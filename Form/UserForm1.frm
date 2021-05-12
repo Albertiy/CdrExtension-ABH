@@ -238,7 +238,11 @@ Public Function GenOutLine()
     If newLayer Is Nothing Then
        Set newLayer = p.CreateLayer("轮廓图层")
     End If
-    newLayer.Shapes.All.Delete '清空原有的形状（轮廓）
+    Dim oldBoundary As Shape
+    Set oldBoundary = newLayer.Shapes.FindShape("allBoundary")
+    If oldBoundary Is Nothing Then
+    Else
+        oldBoundary.Delete     '清空原有的形状（轮廓）
+    End If
     allBoundary.MoveToLayer newLayer
-    
 End Function
