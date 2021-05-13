@@ -34,9 +34,11 @@ End Sub
 Private Sub UserForm_Initialize()
     InitProductList
     InitColorList
-    ResourcePath = "D:\MyWorkspace\cdr\生日帽-单图片\"
+    'ResourcePath = "D:\MyWorkspace\cdr\生日帽-单图片\"
+    'MsgBox Application.Path  ' 到 Draw 为止
+    ResourcePath = Application.Path & "GMS\ABH-Resource\"
     TypeImage.Picture = LoadPicture(ResourcePath & "type.bmp")
-    MsgBox ("load type: " & ProductList.Count)
+    'MsgBox ("load type: " & ProductList.Count)
     For Index = 1 To ProductList.Count
         TypeBox.AddItem ProductList(Index).skuName
     Next Index
@@ -231,12 +233,13 @@ Public Function GenOutLine()
     Set p = Application.ActivePage
     Set l = p.Layers("图层 1")
     Set allBoundary = l.Shapes.All.CreateBoundary(0, 0, True, False)
-    allBoundary.Name = "allBoundary"
     
     Dim newLayer As Layer
     Set newLayer = p.Layers.Find("轮廓图层")
     If newLayer Is Nothing Then
        Set newLayer = p.CreateLayer("轮廓图层")
+    Else
+        Set newLayer = p.Layers("轮廓图层")
     End If
     Dim oldBoundary As Shape
     Set oldBoundary = newLayer.Shapes.FindShape("allBoundary")
@@ -244,5 +247,9 @@ Public Function GenOutLine()
     Else
         oldBoundary.Delete     '清空原有的形状（轮廓）
     End If
+    '不知为何 MoveToLayer 老是报错，可能是命名冲突，所以把修改名字放到移动后
+    MsgBox newLayer.Name
     allBoundary.MoveToLayer newLayer
+    allBoundary.Name = "allBoundary"
+    
 End Function
