@@ -3,18 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ABHInstaller"
+        xmlns:local="clr-namespace:ABHInstaller" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="BirthdayHat - CorelDraw插件安装器" Height="240" Width="450" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="#FFF6F6F6">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="284" Height="25"/>
         <Label Content="从列表中选择安装的版本：" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.43,0.422"/>
         <Label Content="或 手动选择 CorelDRAW 安装路径：" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="25" Margin="22,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="284"/>
-        <Button Content="选择文件夹" HorizontalAlignment="Left" Margin="326,101,0,0" VerticalAlignment="Top" Width="84" Height="25" RenderTransformOrigin="0.51,0.496"/>
-        <Button Content="安装" HorizontalAlignment="Left" Margin="178,163,0,0" VerticalAlignment="Top" Width="84" Height="23"/>
-        <Button Content="刷新列表" HorizontalAlignment="Left" Margin="326,41,0,0" VerticalAlignment="Top" Width="84" Height="25"/>
+        <ComboBox x:Name="InstalledListComboBox" HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="284" Height="25" SelectionChanged="InstalledListComboBox_SelectionChanged" ItemsSource="{Binding InstalledList.Keys}"/>
+        <TextBox x:Name="InstallPathTextBox" HorizontalAlignment="Left" Height="25" Margin="22,101,0,0" VerticalAlignment="Top" Width="284" FontSize="10" Text="{Binding TextPath}"/>
+        <Button x:Name="RefreshButton" Content="刷新列表" HorizontalAlignment="Left" Margin="326,41,0,0" VerticalAlignment="Top" Width="84" Height="25" Click="RefreshButton_Click" ToolTip="别刷了，没有就是没有"/>
+        <Button x:Name="ChooseDirButton" Content="选择文件夹" HorizontalAlignment="Left" Margin="326,101,0,0" VerticalAlignment="Top" Width="84" Height="25" RenderTransformOrigin="0.51,0.496" Click="ChooseDirButton_Click"/>
+        <Button x:Name="InstallButton" Content="安装" HorizontalAlignment="Left" Margin="178,163,0,0" VerticalAlignment="Top" Width="84" Height="23" Click="InstallButton_Click"/>
         <Label Content="Albertiy" HorizontalAlignment="Left" Margin="369,175,0,0" VerticalAlignment="Top" Width="64" FontFamily="Embassy BT" Opacity="0.15"/>
-
+        <Label Content="提示：可以检查此路径下是否有 Draw 文件夹" HorizontalAlignment="Left" Margin="22,131,0,0" VerticalAlignment="Top" Height="27" FontSize="10" Opacity="0.5"/>
     </Grid>
 </Window>
