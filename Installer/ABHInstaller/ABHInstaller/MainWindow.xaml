@@ -1,0 +1,20 @@
+﻿<Window x:Name="InstallerWindow" x:Class="ABHInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ABHInstaller"
+        mc:Ignorable="d"
+        Title="BirthdayHat - CorelDraw插件安装器" Height="240" Width="450" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" UseLayoutRounding="False" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="#FFF6F6F6">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="22,41,0,0" VerticalAlignment="Top" Width="284" Height="25"/>
+        <Label Content="从列表中选择安装的版本：" HorizontalAlignment="Left" Margin="22,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.43,0.422"/>
+        <Label Content="或 手动选择 CorelDRAW 安装路径：" HorizontalAlignment="Left" Margin="22,71,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="25" Margin="22,101,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="284"/>
+        <Button Content="选择文件夹" HorizontalAlignment="Left" Margin="326,101,0,0" VerticalAlignment="Top" Width="84" Height="25" RenderTransformOrigin="0.51,0.496"/>
+        <Button Content="安装" HorizontalAlignment="Left" Margin="178,163,0,0" VerticalAlignment="Top" Width="84" Height="23"/>
+        <Button Content="刷新列表" HorizontalAlignment="Left" Margin="326,41,0,0" VerticalAlignment="Top" Width="84" Height="25"/>
+        <Label Content="Albertiy" HorizontalAlignment="Left" Margin="369,175,0,0" VerticalAlignment="Top" Width="64" FontFamily="Embassy BT" Opacity="0.15"/>
+
+    </Grid>
+</Window>
