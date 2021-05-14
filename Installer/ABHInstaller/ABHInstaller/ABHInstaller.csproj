@@ -139,6 +139,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\GMS\ABH-Resource\ABH_Toolbar.cdws" />
     <Resource Include="Resources\GMS\ABH-Resource\type-1.cdr" />
     <Resource Include="Resources\GMS\ABH-Resource\type-1.cdt" />
     <Resource Include="Resources\GMS\ABH-Resource\type-2.cdr" />

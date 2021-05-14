@@ -13,6 +13,7 @@ namespace ABHInstaller
 
         private string[] fileList = {
             "/Resources/GMS/Albertiy'sBirthdayHat.gms",
+            "/Resources/GMS/ABH-Resource/ABH_Toolbar.cdws",
             "/Resources/GMS/ABH-Resource/type-1-blue.bmp",
             "/Resources/GMS/ABH-Resource/type-1-pink.bmp",
             "/Resources/GMS/ABH-Resource/type-1.cdr",
