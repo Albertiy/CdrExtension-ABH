@@ -14,6 +14,21 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,8 +73,15 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ResourcesLoader.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -108,13 +131,28 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\GMS\ABH-Resource\type-1.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-1.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-2.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-2.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-3.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-3.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-4.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-4.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-5.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-5.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-6.cdr" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-6.cdt" />
+    <Resource Include="Resources\GMS\ABH-Resource\效果图-type-1.cdr" />
+    <Resource Include="Resources\GMS\Albertiy%27sBirthdayHat.gms" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -122,8 +160,29 @@
   <ItemGroup>
     <Resource Include="albertiy_birthday_hat_64.ico" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\GMS\ABH-Resource\type-1-blue.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-1-pink.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-2.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-3-blue.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-3-pink.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-4-blue.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-5-pink.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type-6-classicred.bmp" />
+    <Resource Include="Resources\GMS\ABH-Resource\type.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

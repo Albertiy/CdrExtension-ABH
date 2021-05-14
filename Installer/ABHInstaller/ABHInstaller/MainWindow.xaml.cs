@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Resources;
 using WinForm = System.Windows.Forms;
 
 namespace ABHInstaller
@@ -42,8 +45,27 @@ namespace ABHInstaller
         private void ChooseDirButton_Click(object sender, RoutedEventArgs e)
         {
             this.InstalledListComboBox.SelectedItem = "自定义";
-            WinForm.FolderBrowserDialog dialog = new WinForm.FolderBrowserDialog();
-            dialog.ShowDialog();
+            //WinForm.FolderBrowserDialog dialog = new WinForm.FolderBrowserDialog();
+            //WinForm.DialogResult res = dialog.ShowDialog();
+            //Console.WriteLine(res);
+
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,//设置为选择文件夹
+                Title = "选择 CorelDRAW 套装所在文件夹（包含 Draw 目录）",
+                InitialDirectory = @"C:\",
+                Multiselect = false
+            };
+            String oldPath = this.viewModel.TextPath;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                this.viewModel.TextPath = dialog.FileName + @"\";
+                Console.WriteLine("|| The Folder you choosed： " + this.viewModel.TextPath);
+            }
+            else
+            {
+                Console.WriteLine("|| 未选择文件夹。");
+            }
 
             //if (dialog.ShowDialog(this) == false) return;
             //_fileName = dialog.FileName;
@@ -59,7 +81,33 @@ namespace ABHInstaller
 
         private void InstallButton_Click(object sender, RoutedEventArgs e)
         {
+            string folderPath = this.viewModel.TextPath;
 
+            string errorReason = "";
+            Console.WriteLine("|| 检测目录 “" + folderPath + "” 是否存在；");
+            if (Directory.Exists(folderPath))
+            {
+                string copyToPath = Path.Combine(folderPath, @"Draw\GMS\");
+                Console.WriteLine("|| 检测目录 “" + copyToPath + "” 是否存在；");
+                if (Directory.Exists(copyToPath))
+                {
+                    Console.WriteLine("|| 是有效的路径，开始复制：");
+                    ResourcesLoader rl = new ResourcesLoader();
+                    if(this.CopyResourceToDir(rl, copyToPath))
+                    {
+                        MessageBox.Show("安装完成", "提示", MessageBoxButton.OK);
+                        System.Windows.Application.Current.Shutdown();
+                    } else
+                    {
+                        MessageBox.Show("安装失败", "提示", MessageBoxButton.OK);
+                    }
+                    return;
+                }
+                else errorReason = "未找到有效的CorelDRAW安装路径！";
+            }
+            else errorReason = "文件夹不存在！";
+            Console.WriteLine("|| " + errorReason);
+            MessageBoxResult result = MessageBox.Show(errorReason, "提示", MessageBoxButton.OK);
         }
 
         public void RefreshSoftwareList()
@@ -147,6 +195,48 @@ namespace ABHInstaller
                 }
             }
             return items;
+        }
+
+        protected bool CopyResourceToDir(ResourcesLoader rl, string targetDir)
+        {
+            //File.Copy(@"Resources\Alertiy'sBirthdayHat.gms", targetDir);
+            // var file = Properties.Resources.Albertiy_sBirthdayHat;
+            // /Resources/GMS/Albertiy'sBirthdayHat.gms
+            // /Resources/GMS/ABH-Resource/type-1-blue.bmp
+            foreach (string key in rl.resourceList.Keys)
+            {
+                Uri uri = new Uri(key, UriKind.Relative);
+                try
+                {
+                    StreamResourceInfo info = Application.GetResourceStream(uri);
+
+                    // 目标路径
+                    string targetUrl = Path.Combine(targetDir, rl.resourceList[key]);
+
+                    Console.WriteLine("|| 创建文件夹：" + Path.GetDirectoryName(targetUrl));
+                    
+                    // File.Create 文件创建需要文件夹必须存在；
+                    // Directory.CreateDirectory 可以创建多级文件夹
+                    Directory.CreateDirectory(Path.GetDirectoryName(targetUrl));
+
+                    using (FileStream fileStream = File.Create(targetUrl))
+                    {
+                        info.Stream.Seek(0, SeekOrigin.Begin); // 从第一个字节开始复制
+                        info.Stream.CopyTo(fileStream);
+                        Console.WriteLine("|| Write to " + targetUrl + " Done!");
+                    }
+                }
+                catch (System.IO.IOException)
+                {
+                    Console.WriteLine("|| 资源 " + uri + " 不存在");
+                    continue;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("|| 出现意料之外的错误，跳过复制");
+                }
+            }
+            return true;
         }
     }
 }
