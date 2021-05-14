@@ -9,5 +9,15 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 Private Sub GlobalMacroStorage_Start()
     'MsgBox "Start"
-    Application.ImportWorkspace Application.Path & "GMS\ABH-Resource\ABH_Toolbar.cdws"
+    'MsgBox "WindowActivate"
+    Dim filePath As String
+    filePath = Application.Path & "GMS\ABH-Resource\ABH_Toolbar.cdws"
+    'MsgBox filePath
+On Error GoTo start_label
+    'MsgBox "Helo "
+    'Application.ImportWorkspace filePath
+    Exit Sub
+start_label:
+    MsgBox "Error"
+    'DoNothing
 End Sub
