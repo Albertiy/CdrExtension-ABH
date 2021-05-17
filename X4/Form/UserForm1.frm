@@ -14,6 +14,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+
 Private Sub OutlineButton_Click()
     GenOutLine
 End Sub
@@ -37,6 +38,7 @@ Private Sub UserForm_Initialize()
     'ResourcePath = "D:\MyWorkspace\cdr\生日帽-单图片\"
     'MsgBox Application.Path  ' 到 Draw 为止
     ResourcePath = Application.Path & "GMS\ABH-Resource\"
+    'MsgBox ResourcePath
     TypeImage.Picture = LoadPicture(ResourcePath & "type.bmp")
     'MsgBox ("load type: " & ProductList.Count)
     For Index = 1 To ProductList.Count
@@ -201,7 +203,9 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
         backSr.Add logoBack1
     End If
     
-    Set backBoundary = backSr.CreateBoundary(0, 0, True, False)
+    'X4中没有CreateBoundary，但可以像调用插件一样调用此功能
+    'Set backBoundary = backSr.CreateBoundary(0, 0, True, False)
+    Set backBoundary = backSr.CustomCommand("Boundary", "CreateBoundary") ', 0, 0, True, False
     backBoundary.Name = "backBoundary"
     backBoundary.Fill.UniformColor = ColorList("black")
     
@@ -233,7 +237,9 @@ Public Function GenOutLine()
     Dim allBoundary As Shape
     Set p = Application.ActivePage
     Set l = p.Layers("图层 1")
-    Set allBoundary = l.Shapes.All.CreateBoundary(0, 0, True, False)
+    '同理
+    'Set allBoundary = l.Shapes.All.CreateBoundary(0, 0, True, False)
+    Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
     
     Dim newLayer As layer
     Set newLayer = p.Layers.Find("轮廓图层")
