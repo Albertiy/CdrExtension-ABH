@@ -113,7 +113,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Tools\InstallTargetLoader.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\InstallUtility.cs" />
     <Compile Include="Tools\RegistryUtility.cs" />
     <Compile Include="Tools\ResourcesLoader.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
@@ -134,11 +139,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -146,6 +146,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="FodyWeavers.xsd">
@@ -156,21 +157,39 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\GMS\ABH-Resource\ABH_Toolbar.cdws" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-1.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-1.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-2.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-2.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-3.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-3.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-4.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-4.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-5.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-5.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-6.cdr" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-6.cdt" />
-    <Resource Include="Resources\GMS\ABH-Resource\效果图-type-1.cdr" />
-    <Resource Include="Resources\GMS\Albertiy%27sBirthdayHat.gms" />
+    <Resource Include="InstallResources\X4\ABH-Resource\ABH_Toolbar.cdws" />
+    <Resource Include="InstallResources\X4\ABH-Resource\Backup_of_type-6.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-1.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-1.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-2.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-2.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-3.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-3.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-4.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-4.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-5.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-5.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-6-old.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-6.cdr" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-6.cdt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\效果图-type-1.cdr" />
+    <Resource Include="InstallResources\X4\ABHX4.gms" />
+    <Resource Include="InstallResources\X7\ABH-Resource\ABH_Toolbar.cdws" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-1.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-1.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-2.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-2.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-3.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-3.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-4.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-4.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-5.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-5.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-6-old.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-6.cdr" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-6.cdt" />
+    <Resource Include="InstallResources\X7\ABH-Resource\效果图-type-1.cdr" />
+    <Resource Include="InstallResources\X7\Albertiy%27sBirthdayHat.gms" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -192,15 +211,27 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\GMS\ABH-Resource\type-1-blue.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-1-pink.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-2.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-3-blue.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-3-pink.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-4-blue.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-5-pink.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type-6-classicred.bmp" />
-    <Resource Include="Resources\GMS\ABH-Resource\type.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\Toolbar_X4.xslt" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-1-blue.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-1-pink.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-2.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-3-blue.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-3-pink.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-4-blue.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-5-pink.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type-6-classicred.bmp" />
+    <Resource Include="InstallResources\X4\ABH-Resource\type.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="InstallResources\X7\ABH-Resource\type-1-blue.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-1-pink.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-2.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-3-blue.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-3-pink.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-4-blue.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-5-pink.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type-6-classicred.bmp" />
+    <Resource Include="InstallResources\X7\ABH-Resource\type.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />

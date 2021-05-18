@@ -186,7 +186,7 @@ namespace ABHInstaller
 
         public string InstallResources(string folderPath)
         {
-            Console.WriteLine("|| 目标安装路径｛0｝", folderPath);
+            Console.WriteLine("|| 目标安装路径{0}", folderPath);
             string errorReason = string.Empty;
             if (Directory.Exists(folderPath))
             {
