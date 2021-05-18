@@ -100,12 +100,13 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     Dim s As Shape
     
     templatePath = ResourcePath & typeStr & ".cdt"
-    'MsgBox (Application.Path)
+    'MsgBox (templatePath)
     Set Doc = Application.CreateDocumentFromTemplate(templatePath, True)
     'MsgBox (doc.Name)
     Set p = Doc.Pages(1) ' 0 is MainPage
     'MsgBox (p.Name)
     Set l = p.Layers("Í¼²ã 1")
+    'Exit Function
     'MsgBox (l.Name)
     
     Doc.Unit = cdrMillimeter ' set unit to mm
