@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("ABHInstaller")]
 [assembly: AssemblyDescription("CDR GMS Extension Installer")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Albertiy.top")]
 [assembly: AssemblyProduct("ABHInstaller")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright © Albertiy 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,6 @@ using System.Windows;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
 //通过使用 "*"，如下所示:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: Guid("EA8DFEB2-ED73-8D47-8FE0-6DC5A02A0988")]
