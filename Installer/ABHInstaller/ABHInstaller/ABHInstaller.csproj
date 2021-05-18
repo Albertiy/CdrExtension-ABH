@@ -113,8 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ResourcesLoader.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="Tools\InstallTargetLoader.cs" />
+    <Compile Include="Tools\RegistryUtility.cs" />
+    <Compile Include="Tools\ResourcesLoader.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
