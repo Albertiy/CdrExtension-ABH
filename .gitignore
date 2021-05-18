@@ -79,9 +79,10 @@ ModelManifest.xml
 
 #zzzili
 v15/
-#.gitignore
 
-**Installer/**/InstallResources/
+#自定义去除文件：
+# 排除文件夹下的文件夹
+**Installer/**/InstallResources/**/
 
 *.testlog
 *.lutdata
