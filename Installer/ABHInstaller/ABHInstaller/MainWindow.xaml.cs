@@ -198,7 +198,7 @@ namespace ABHInstaller
                     ResourcesLoader rl;
                     List<string> tempList = new List<string>();
                     tempList.AddRange(commonFileList);
-                    if (folderPath.Contains("X4") || InstalledListComboBox.SelectedItem.ToString().Contains("X4"))  // 复制 X4 版本的资源文件
+                    if (folderPath.Contains("X4") || InstalledListComboBox.SelectedItem.ToString().Contains("X4") || InstalledListComboBox.SelectedItem.ToString().Contains("Suite 14"))  // 复制 X4 版本的资源文件
                     {
                         tempList.AddRange(X4FileList);
                         rl = new ResourcesLoader(@"/InstallResources/X4/", tempList.ToArray());
