@@ -109,6 +109,7 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     'Exit Function
     'MsgBox (l.Name)
     
+    'MsgBox Doc.Unit
     Doc.Unit = cdrMillimeter ' set unit to mm
     
     Dim group1 As Shape
@@ -223,7 +224,11 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
 '
 '    Set allBoundary = allShape.CreateBoundary(0, 0, True, False)
 '    allBoundary.Name = "allBoundary"
-        
+    
+    'MsgBox Doc.Unit
+    Doc.Unit = 1 ' reset unit
+    'MsgBox Doc.Unit
+    
     Exit Function
 FontSetError:
     

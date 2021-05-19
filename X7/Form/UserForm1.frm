@@ -2,9 +2,9 @@ VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} UserForm1 
    Caption         =   "生日帽"
    ClientHeight    =   5040
-   ClientLeft      =   108
-   ClientTop       =   456
-   ClientWidth     =   3624
+   ClientLeft      =   105
+   ClientTop       =   450
+   ClientWidth     =   3630
    OleObjectBlob   =   "UserForm1.frx":0000
    ShowModal       =   0   'False
    StartUpPosition =   1  '所有者中心
@@ -218,6 +218,8 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
 '
 '    Set allBoundary = allShape.CreateBoundary(0, 0, True, False)
 '    allBoundary.Name = "allBoundary"
+
+    Doc.Unit = 1
         
     Exit Function
 FontSetError:
