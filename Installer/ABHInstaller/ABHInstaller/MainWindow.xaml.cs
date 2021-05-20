@@ -15,10 +15,11 @@ namespace ABHInstaller
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region 定义
         /// <summary>
         /// 共用的资源文件列表
         /// </summary>
-        private string[] commonFileList = {
+        private readonly string[] commonFileList = {
             "ABH-Resource/type-1-blue.bmp",
             "ABH-Resource/type-1-pink.bmp",
             "ABH-Resource/type-1.cdr",
@@ -44,17 +45,29 @@ namespace ABHInstaller
         /// <summary>
         /// X4版本独有的资源文件
         /// </summary>
-        private string[] X4FileList = {
+        private readonly string[] X4FileList = {
             "ABHX4.gms",
             "ABH-Resource/Toolbar_X4.xslt",
         };
         /// <summary>
         /// X7版本独有的资源文件
         /// </summary>
-        private string[] X7FileList = {
+        private readonly string[] X7FileList = {
             "Albertiy'sBirthdayHat.gms",
             "ABH-Resource/ABH_Toolbar.cdws",
         };
+        /// <summary>
+        /// 压缩的资源文件
+        /// </summary>
+        private readonly string[] X4CompressedFileList = {
+            "ABHX4.zip"
+        };
+        private readonly string[] X7CompressedFileList = {
+            "ABHX7.zip"
+        };
+
+        #endregion
+
 
         /// <summary>
         /// 动态绑定的视图模型
@@ -69,6 +82,9 @@ namespace ABHInstaller
             this.DataContext = viewModel; // 全局界面数据上下文绑定
             RefreshSoftwareList();
         }
+
+        #region 事件
+
         /// <summary>
         /// 复选框选择改变事件
         /// </summary>
@@ -141,6 +157,12 @@ namespace ABHInstaller
                 MessageBox.Show(errorReason, "提示", MessageBoxButton.OK);
             }
         }
+
+        #endregion
+
+
+        #region 方法
+
         /// <summary>
         /// 刷新软件路径列表
         /// </summary>
@@ -196,19 +218,23 @@ namespace ABHInstaller
                 {
                     Console.WriteLine("|| 是有效的路径，开始复制：");
                     ResourcesLoader rl;
-                    List<string> tempList = new List<string>();
-                    tempList.AddRange(commonFileList);
+                    // 使用压缩包代替繁琐的文件资源列表
+                    ////List<string> tempList = new List<string>();
+                    ////tempList.AddRange(commonFileList);
                     if (folderPath.Contains("X4") || InstalledListComboBox.SelectedItem.ToString().Contains("X4") || InstalledListComboBox.SelectedItem.ToString().Contains("Suite 14"))  // 复制 X4 版本的资源文件
                     {
-                        tempList.AddRange(X4FileList);
-                        rl = new ResourcesLoader(@"/InstallResources/X4/", tempList.ToArray());
+                        ////tempList.AddRange(X4FileList);
+                        rl = new ResourcesLoader(@"/InstallResources/X4/");
+                        rl.PushToResourceList(this.X4CompressedFileList, true); // 直接创建压缩文件
                     }
                     else // 复制 X7 版本的资源文件
                     {
-                        tempList.AddRange(X7FileList);
-                        rl = new ResourcesLoader(@"/InstallResources/X7/", tempList.ToArray());
+                        ////tempList.AddRange(X7FileList);
+                        ////rl = new ResourcesLoader(@"/InstallResources/X7/", tempList.ToArray());
+                        rl = new ResourcesLoader(@"/InstallResources/X7/");
+                        rl.PushToResourceList(this.X7CompressedFileList, true);
                     }
-                    if (InstallUtility.CopyResourceToDir(rl, copyToPath))
+                    if (InstallUtility.CopyResourcesToDir(rl, copyToPath))
                     {
                         MessageBox.Show("安装完成", "提示", MessageBoxButton.OK);
                         Application.Current.Shutdown();  // 关闭程序
@@ -225,5 +251,7 @@ namespace ABHInstaller
                 errorReason = "文件夹不存在！";
             return errorReason;
         }
+
+        #endregion
     }
 }
