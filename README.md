@@ -13,6 +13,8 @@
 
 .GMS file 密码/Password：zha123
 
+编译 Installer 之前，需要把对应的资源文件复制到 InstalledResources 文件夹中。目前 X4 中放 ABHX4.zip，X7 中放 ABHX7.zip，分别来自于仓库的 X4/GMS 和 X7/GMS，直接选择里面全部文件，然后压缩为 zip 文件，不要套一层文件夹。
+
 To use the GMS source code, `Alt+F11` open the CDR macro editor, and then import them into a global macro project. (You can open the 'Draw/GMS' directory exists in where you installed the CorelDraw Software, then copy a .gms file as your new gms project.
 
 如果想要使用GMS源码，首先打开安装的 CorelDraw 软件，`Alt+F11` 打开宏编辑器，在 GMS 项目上导入。可以到 CDR 安装目录的 Draw/GMS 文件夹中，复制一个 .gms 文件，作为你自己的新工程。 

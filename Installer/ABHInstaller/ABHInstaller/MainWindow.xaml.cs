@@ -16,46 +16,46 @@ namespace ABHInstaller
     public partial class MainWindow : Window
     {
         #region 定义
-        /// <summary>
-        /// 共用的资源文件列表
-        /// </summary>
-        private readonly string[] commonFileList = {
-            "ABH-Resource/type-1-blue.bmp",
-            "ABH-Resource/type-1-pink.bmp",
-            "ABH-Resource/type-1.cdr",
-            "ABH-Resource/type-1.cdt",
-            "ABH-Resource/type-2.bmp",
-            "ABH-Resource/type-2.cdr",
-            "ABH-Resource/type-2.cdt",
-            "ABH-Resource/type-3-blue.bmp",
-            "ABH-Resource/type-3-pink.bmp",
-            "ABH-Resource/type-3.cdr",
-            "ABH-Resource/type-3.cdt",
-            "ABH-Resource/type-4-blue.bmp",
-            "ABH-Resource/type-4.cdr",
-            "ABH-Resource/type-4.cdt",
-            "ABH-Resource/type-5-pink.bmp",
-            "ABH-Resource/type-5.cdr",
-            "ABH-Resource/type-5.cdt",
-            "ABH-Resource/type-6-classicred.bmp",
-            "ABH-Resource/type-6.cdr",
-            "ABH-Resource/type-6.cdt",
-            "ABH-Resource/type.bmp"
-        };
-        /// <summary>
-        /// X4版本独有的资源文件
-        /// </summary>
-        private readonly string[] X4FileList = {
-            "ABHX4.gms",
-            "ABH-Resource/Toolbar_X4.xslt",
-        };
-        /// <summary>
-        /// X7版本独有的资源文件
-        /// </summary>
-        private readonly string[] X7FileList = {
-            "Albertiy'sBirthdayHat.gms",
-            "ABH-Resource/ABH_Toolbar.cdws",
-        };
+        ///// <summary>
+        ///// 共用的资源文件列表
+        ///// </summary>
+        //private readonly string[] commonFileList = {
+        //    "ABH-Resource/type-1-blue.bmp",
+        //    "ABH-Resource/type-1-pink.bmp",
+        //    "ABH-Resource/type-1.cdr",
+        //    "ABH-Resource/type-1.cdt",
+        //    "ABH-Resource/type-2.bmp",
+        //    "ABH-Resource/type-2.cdr",
+        //    "ABH-Resource/type-2.cdt",
+        //    "ABH-Resource/type-3-blue.bmp",
+        //    "ABH-Resource/type-3-pink.bmp",
+        //    "ABH-Resource/type-3.cdr",
+        //    "ABH-Resource/type-3.cdt",
+        //    "ABH-Resource/type-4-blue.bmp",
+        //    "ABH-Resource/type-4.cdr",
+        //    "ABH-Resource/type-4.cdt",
+        //    "ABH-Resource/type-5-pink.bmp",
+        //    "ABH-Resource/type-5.cdr",
+        //    "ABH-Resource/type-5.cdt",
+        //    "ABH-Resource/type-6-classicred.bmp",
+        //    "ABH-Resource/type-6.cdr",
+        //    "ABH-Resource/type-6.cdt",
+        //    "ABH-Resource/type.bmp"
+        //};
+        ///// <summary>
+        ///// X4版本独有的资源文件
+        ///// </summary>
+        //private readonly string[] X4FileList = {
+        //    "ABHX4.gms",
+        //    "ABH-Resource/Toolbar_X4.xslt",
+        //};
+        ///// <summary>
+        ///// X7版本独有的资源文件
+        ///// </summary>
+        //private readonly string[] X7FileList = {
+        //    "Albertiy'sBirthdayHat.gms",
+        //    "ABH-Resource/ABH_Toolbar.cdws",
+        //};
         /// <summary>
         /// 压缩的资源文件
         /// </summary>
