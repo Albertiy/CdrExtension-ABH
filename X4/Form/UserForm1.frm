@@ -94,10 +94,12 @@ Public Function GetItemFromProductList(nameStr As String) As Product
 End Function
 
 Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, colorStr As String)
+    'If not input, nameStr = ''
+    
     Dim Doc As Document
     Dim p As Page
     Dim l As layer
-    Dim s As Shape
+    Dim s As shape
     
     templatePath = ResourcePath & typeStr & ".cdt"
     'MsgBox (templatePath)
@@ -112,13 +114,13 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     'MsgBox Doc.Unit
     Doc.Unit = cdrMillimeter ' set unit to mm
     
-    Dim group1 As Shape
+    Dim group1 As shape
     Set group1 = l.Shapes("group1")
     
-    Dim nameTextShape As Shape
-    Dim ageTextShape As Shape
+    Dim nameTextShape As shape
+    Dim ageTextShape As shape
     
-    Dim logoBack1 As Shape
+    Dim logoBack1 As shape
     Set logoBack1 = l.Shapes("logoback1")
     
     Set nameTextShape = l.Shapes("name1")
@@ -160,8 +162,8 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     '生成边框
     Dim nameEffect As Effect
     Dim nameSrFromContour As ShapeRange
-    Dim nameUpperBack1 As Shape
-    Dim nameBack1 As Shape
+    Dim nameUpperBack1 As shape
+    Dim nameBack1 As shape
     
     Set nameEffect = nameTextShape.CreateContour(cdrContourOutside, 4, 1, OutlineColor:=ColorList("black"), FillColor:=ColorList("black"), CornerType:=cdrContourCornerRound)
     ' Not Suggested Sub : Shape.Separate; 因为没有返回值
@@ -176,8 +178,8 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
 
     Dim ageEffect As Effect
     Dim ageSrFromContour As ShapeRange
-    Dim ageUpperBack1 As Shape
-    Dim ageBack1 As Shape
+    Dim ageUpperBack1 As shape
+    Dim ageBack1 As shape
     
     If typeStr = "type-4" Or typeStr = "type-5" Then
         If ageStr <> "" Then
@@ -192,7 +194,7 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     End If
     
     Dim backSr As New ShapeRange
-    Dim backBoundary As Shape
+    Dim backBoundary As shape
     
     backSr.Add nameBack1
     If typeStr = "type-4" Or typeStr = "type-5" Then
@@ -240,12 +242,30 @@ End Function
 Public Function GenOutLine()
     Dim p As Page
     Dim l As layer
-    Dim allBoundary As Shape
+    Dim allBoundary As shape
     Set p = Application.ActivePage
     Set l = p.Layers("图层 1")
     '同理
     'Set allBoundary = l.Shapes.All.CreateBoundary(0, 0, True, False)
-    Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
+    ' age 变成空字符串会报错，所以只用backBoundary创建轮廓（偷懒了哈哈）
+    
+    Dim ageTextShape As shape
+    Set ageTextShape = l.Shapes("age1")
+    If ageTextShape Is Nothing Or ageTextShape.Text.Story.Text <> "" Then
+        Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
+    Else
+        'MsgBox "空的age！"
+        Dim shape As shape
+        For Each shape In l.Shapes.All
+            If shape.Name = "backBoundary" Then
+                Set allBoundary = shape.CustomCommand("Boundary", "CreateBoundary")
+            End If
+        Next shape
+    End If
+    If allBoundary Is Nothing Then
+        MsgBox "未找到 backBoundary 形状，描边失败"
+        Exit Function
+    End If
     
     Dim newLayer As layer
     Set newLayer = p.Layers.Find("轮廓图层")
@@ -254,7 +274,7 @@ Public Function GenOutLine()
     Else
         Set newLayer = p.Layers("轮廓图层")
     End If
-    Dim oldBoundary As Shape
+    Dim oldBoundary As shape
     Set oldBoundary = newLayer.Shapes.FindShape("allBoundary")
     If oldBoundary Is Nothing Then
     Else
