@@ -261,11 +261,9 @@ Public Function GenOutLine()
     '    MsgBox "age1 is Nothing"
     'End If
     If ageTextShape Is Nothing Then
-        Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
     ElseIf ageTextShape.Text.Story.Text = "" Then
         ageTextShape.Delete '直接删除，没那么多屁事了:D
         'MsgBox "删除age！"
-        Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
         'Dim shape As shape
         'For Each shape In l.Shapes.All
         '    If shape.Name = "backBoundary" Then
@@ -273,6 +271,7 @@ Public Function GenOutLine()
         '    End If
         'Next shape
     End If
+    Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
     If allBoundary Is Nothing Then
         MsgBox "未找到 backBoundary 形状，描边失败"
         Exit Function
