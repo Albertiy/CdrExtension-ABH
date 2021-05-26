@@ -59,6 +59,11 @@ Private Sub GenerateButton_Click()
     typeStr = TypeBox.Text
     'MsgBox NameTextBox.Text & AgeTextBox.Text & TypeBox.Value
     
+    If nameStr = "" Then
+        MsgBox "姓名是必填项"
+        Exit Sub
+    End If
+    
     If typeStr = "" Then
         MsgBox "请选择一个产品"
         Exit Sub
@@ -164,7 +169,8 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     Dim nameSrFromContour As ShapeRange
     Dim nameUpperBack1 As shape
     Dim nameBack1 As shape
-    
+    'nameTextShape.ConvertToCurves
+    'nameTextShape.ConvertToCurves
     Set nameEffect = nameTextShape.CreateContour(cdrContourOutside, 4, 1, OutlineColor:=ColorList("black"), FillColor:=ColorList("black"), CornerType:=cdrContourCornerRound)
     ' Not Suggested Sub : Shape.Separate; 因为没有返回值
     ' Suggested Function: Effect.Separate; 返回ShapeRange
@@ -184,7 +190,7 @@ Public Function GenFile(nameStr As String, ageStr As String, typeStr As String, 
     If typeStr = "type-4" Or typeStr = "type-5" Then
         If ageStr <> "" Then
             Set ageEffect = ageTextShape.CreateContour(cdrContourOutside, 4, 1, OutlineColor:=ColorList("black"), FillColor:=ColorList("black"), CornerType:=cdrContourCornerRound)
-            Set ageSrFromContour = ageEffect.Separate
+            Set ageSrFromContour = ageEffect.Separate   ' 从原形状上拆分轮廓图
             Set ageUpperBack1 = ageSrFromContour(1)
             ageUpperBack1.Name = "ageupperback1"
             Set ageBack1 = ageUpperBack1.Duplicate
@@ -250,17 +256,22 @@ Public Function GenOutLine()
     ' age 变成空字符串会报错，所以只用backBoundary创建轮廓（偷懒了哈哈）
     
     Dim ageTextShape As shape
-    Set ageTextShape = l.Shapes("age1")
-    If ageTextShape Is Nothing Or ageTextShape.Text.Story.Text <> "" Then
+    Set ageTextShape = l.Shapes.FindShape("age1")   'l.Shapes("age1")
+    'If ageTextShape Is Nothing Then
+    '    MsgBox "age1 is Nothing"
+    'End If
+    If ageTextShape Is Nothing Then
         Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
-    Else
-        'MsgBox "空的age！"
-        Dim shape As shape
-        For Each shape In l.Shapes.All
-            If shape.Name = "backBoundary" Then
-                Set allBoundary = shape.CustomCommand("Boundary", "CreateBoundary")
-            End If
-        Next shape
+    ElseIf ageTextShape.Text.Story.Text = "" Then
+        ageTextShape.Delete '直接删除，没那么多屁事了:D
+        'MsgBox "删除age！"
+        Set allBoundary = l.Shapes.All.CustomCommand("Boundary", "CreateBoundary") '(0, 0, True, False)
+        'Dim shape As shape
+        'For Each shape In l.Shapes.All
+        '    If shape.Name = "backBoundary" Then
+        '        Set allBoundary = shape.CustomCommand("Boundary", "CreateBoundary")
+        '    End If
+        'Next shape
     End If
     If allBoundary Is Nothing Then
         MsgBox "未找到 backBoundary 形状，描边失败"
